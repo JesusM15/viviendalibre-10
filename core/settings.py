@@ -203,6 +203,10 @@ if env('DEBUG'):
         'viviendalibre.up.railway.app',
         'https://viviendalibre.up.railway.app/'
     ]
+    CORS_ORIGIN_WHITELIST = {
+        'viviendalibre.up.railway.app',
+        'https://viviendalibre.up.railway.app/',
+    }
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_HOST_USER = env('correo')
     EMAIL_HOST_PASSWORD = env('password')
@@ -217,6 +221,10 @@ else:
         'viviendalibre.up.railway.app',
         'https://viviendalibre.up.railway.app/',
     ]
+    CORS_ORIGIN_WHITELIST = {
+        'viviendalibre.up.railway.app',
+        'https://viviendalibre.up.railway.app/',
+    }
     #configuracion smtp del servidor
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_HOST_USER = env('correo')
