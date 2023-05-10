@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = False
 
 ALLOWED_HOSTS = ['https://viviendalibre.up.railway.app/', 'viviendalibre.up.railway.app']
 
@@ -192,7 +192,7 @@ WEBHOOK_ID = env('WEBHOOK_ID')
 
 MAPS_API_KEY = env('MAPS_API_KEY')
 
-if env('DEBUG'):
+if DEBUG:
     # EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
     CSRF_TRUSTED_ORIGINS  = [
         'http://127.0.0.1:8000',
