@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    - Registro con exito.
+{% endblock %}
+
+{% block content %}
+    <div class="flex flex-col items-center justify-center px-6 pt-8 mx-auto h-screen pt:mt-0 dark:bg-gray-900">
+        <h1 class="text-gray-950">
+            Tu registro se ha completado con exito. Puedes iniciar sesi&oacute;n mediante este enlance <a href="{% url 'login' %}">Iniciar sesi&oacute;n</a>
+        </h1>
+    </div>
+{% endblock content %}

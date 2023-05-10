@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    - Registrarse
+{% endblock title %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center px-6 pt-16 mx-auto h-screen pt:mt-0 dark:bg-gray-900">
+    <a href="{% url 'home' %}" class="md:flex items-center justify-center  text-2xl font-semibold hidden">
+        <img src="{% static 'imagenes/logo.png' %}" class="mr-4 h-20" alt="ViviendaLibre Logo">
+    </a>
+
+    <div class="w-full max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+            Registrarse
+        </h2>
+        <form class="mt-8 space-y-6" method="POST">
+            {% csrf_token %}
+                
+                <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Nombre de usuario</label>
+                <input type="text" name="username" maxlength="150" required id="id_username" placeholder="Usuario"  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                <label for="id_email" class="block mb-2 text-sm font-medium text-gray-900">Correo electronico:</label>
+                <input type="email" name="email" maxlength="254" id="id_email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" required>
+                <div class="flex justify-between">
+                    <div class="text-center mr-2">
+                        <label for="id_first_name" class="block mb-2 text-sm font-medium text-gray-900">Nombre:</label>
+                        <input type="text" name="first_name" maxlength="150" id="id_first_name" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                    </div>
+                    <div  class="text-center mr-2" >
+                        <label for="id_last_name" class="block mb-2 text-sm font-medium text-gray-900">Apellidos:</label>
+                        <input type="text" name="last_name" maxlength="150" id="id_last_name" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"> 
+                    </div>
+                    <div class="text-center">
+                        <Label for="id_last_name" class="block mb-2 text-sm font-medium text-gray-900">Teléfono</Label>
+                        <input type="tel" name="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="(Código de área)Número:516864923455">
+                    </div>
+                </div>
+                <label for="id_password" class="block mb-2 text-sm font-medium text-gray-900">Contraseña:</label>
+                <input type="password" name="password" required id="id_password" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
+
+                <label for="id_password2" class="block mb-2 text-sm font-medium text-gray-900">Confirmar contraseña:</label>
+                <input type="password" name="password2" required id="id_password2" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
+            <div>
+            <input type="submit" class="w-full px-5 py-3 text-base font-medium text-center text-white bg-yellow-300 hover:bg-yellow-400 rounded-lg sm:w-auto" style="cursor:pointer;" value="Registrarse">
+            <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                Ya tienes una cuenta? <a href="{% url 'login' %}" class="text-primary-700 hover:underline">Iniciar sesi&oacute;n aqu&iacute;</a>
+            </div>
+        </form>
+    </div>
+    <br><br><br>
+</div>
+{% endblock content %}

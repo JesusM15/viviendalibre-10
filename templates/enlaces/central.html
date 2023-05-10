@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    - Enlaces de inter&eacute;s
+{% endblock title %}
+
+{% block content %}
+    <div class="flex flex-col px-6 mx-auto h-screen pt:mt-0 pt-20">
+        <a href="{% url 'seguro_hogar' %}">
+            <div class="flex bg-black h-24 w-full items-center justify-center">
+                <h2 class="text-white text-center text-2xl">
+                    Seguro de hogar
+                </h2>
+            </div>
+        </a>
+
+        <a href="{% url 'recomendaciones_vendedor' %}" class="mt-2">
+            <div class="flex bg-yellow-300 h-24 w-full items-center justify-center">
+                <h2 class="text-gray-900 text-center text-2xl">
+                    Recomendaciones al vendedor
+                </h2>
+            </div>
+        </a>
+
+        <a href="{% url 'ofrecemos_vendedor' %}">
+            <div class="flex bg-black h-24 w-full items-center justify-center mt-2">
+                <h2 class="text-white text-center text-2xl">
+                    ¿Qu&eacute; ofrecemos al vendedor?
+                </h2>
+            </div>
+        </a>
+    </div>
+{% endblock content %}

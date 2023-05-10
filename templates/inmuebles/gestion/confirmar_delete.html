@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    - Confirmar eliminaci&oacute;n
+{% endblock title %}
+
+{% block content %}
+    <div class="flex flex-col px-6 mx-auto h-screen pt:mt-0 pt-20 items-center">
+        <h1 class="text-gray-900">
+            ¿Seguro que desea eliminar su publicaci&oacute;n "{{inmueble.Tipo_de_inmueble}} en {{inmueble.ubicacion}}"?
+        </h1>
+        <img src="{{inmueble.portada.url}}" alt="portada inmueble en {{inmueble.ubicacion}} ViviendaLibre.com" class="w-96 my-6"/>
+        <div class="flex flex-wrap">
+            <a class="bg-red-500 text-white p-6 py-3" href="{% url 'delete_confirmado' request.user.email inmueble.id inmueble.slug %}">
+                S&iacute;
+            </a>
+            <a class="bg-gray-500 text-white p-6 py-3 ml-2" href="{% url 'mis_inmuebles' request.user.username request.user.email %}">
+                No
+            </a>
+        </div>
+    </div>
+{% endblock content %}

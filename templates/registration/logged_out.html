@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    - Sesi&oacute;n cerrada
+{% endblock title %}
+
+{% block content %}
+    <div class="flex flex-col items-center justify-center px-6 pt-8 mx-auto h-screen pt:mt-0 dark:bg-gray-900">
+        <h1 class="text-gray-950"> 
+            La Sesi&oacute;n cerro con &eacute;xito puede volver a <a href="{% url 'login' %}" class="underline">Iniciar sesi&oacute;n aqu&iacute;</a>
+        </h1>
+    </div>
+{% endblock content %}

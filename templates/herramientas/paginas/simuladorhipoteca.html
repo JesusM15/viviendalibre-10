@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    - Simulador de hipoteca
+{% endblock title %}
+
+{% block content %}
+    <div class="flex flex-col px-6 mx-auto h-screen pt:mt-0 pt-20">
+        <div class="w-full p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+                Simulador de hipoteca
+            </h2>
+
+            <form class="mt-8 space-y-6" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+               <div class="flex">
+                    <div class="flex-1 mr-4">
+                        <label class="block text-lg mb-6 font-medium text-gray-90">Valor de la propiedad:</label>
+                        <input id="valor_total" type="number" required class="block w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-transparent focus:border-none">
+                    </div>
+               </div>
+            
+               <div class="flex flex-wrap">
+                    <div class="flex-1 mr-4">
+                        <label class="block text-lg mb-6 font-medium text-gray-90">Valor del prestamo en %(no puede exceder el 80% ni ser inferior al 50%):</label>
+                        <h2 class="block mb-6 font-medium text-xl text-gray-90 text-center" id="prestamo_porcentaje">
+                            50%
+                        </h2>
+                        <input value="50" id="porcentaje_valor" type="range" min="50" max="80" required class="block w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-transparent focus:border-none">
+                    </div>
+               </div>
+               <div class="flex flex-wrap">
+                    <div class="flex-1 mr-4">
+                        <h2 class="block text-lg mb-6 font-medium text-gray-90" id="prestamo_valor">
+                            $0
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap">
+                    <div class="flex-1">
+                        <label for="id_parqueadero" class="block text-sm font-medium text-gray-90">A qu&eacute; plazo necesitas el cr&eacute;dito:</label>
+                        <br>
+                        <select name="parqueadero" id="id_parqueadero" class="block w-full p-2 mb-6 text-sm outline-none focus:outline-none text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-transparent">
+                            <option value="1">1 año</option>
+                            {% for year in years %}
+                                <option value="{{year}}">{{year}} Años</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap">
+                    <div class="flex-1">
+                        <label class="block text-lg mb-6 font-medium text-gray-90">Tasa de inter&eacute;s:</label>
+                        <h2 class="block mb-6 font-medium text-xl text-gray-90 text-center" id="tasa_valor">
+                            12%
+                        </h2>
+                        <input value="12" id="tasa_porcentaje" type="range" step="0.1" min="12" max="21" required class="block w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-transparent focus:border-none">
+                    </div>
+                </div>
+
+                <input type="submit" class="w-full px-5 py-3 text-base font-medium text-center text-white bg-yellow-300 hover:bg-yellow-400 rounded-lg sm:w-auto" style="cursor:pointer;" value="Simular" id="btn-hipoteca">
+            </form>
+        </div>
+        <br><br><br><br>
+    </div>
+{% endblock content %}
+
+{% block js %}
+    <script src="{% static 'javascript/herramientas/hipoteca/input.js' %}"></script>
+{% endblock js %}

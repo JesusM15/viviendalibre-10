@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    - ¿Qu&eacute; ofrecemos al vendedor?
+{% endblock title %}
+
+{% block content %}
+<div class="flex flex-col px-6 mx-auto h-screen pt:mt-0 pt-20 items-center">
+    <div class="w-full p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow">
+        <h1 class="text-gray-900 text-center md:text-3xl text-xl font-bold">
+            ¿Qu&eacute; ofrecemos al vendedor?
+        </h1>
+        <img src="{% static 'imagenes/enlaces/1611255.png' %}" class="mb-2 w-full h-52 md:max-w-xl m-auto my-0 md:h-72 rounded-lg"  alt="que ofrecemos al vendedor viviendalibre.com"/>
+        <p class="text-gray-900 text-center">
+            En ViviendaLibre.com solo pagarás desde una pequeña cantdad por anunciar tu inmueble, con todas sus características, explicaciones, fotografías y vídeos.
+        </p>
+        <ul class="list-disc">
+            <li class="text-center">
+                NO PAGAS COMISIONES NI HONORARIOS
+            </li>
+            <li class="text-center">
+                NO REDUCIRÁS TU PRECIO FINAL
+            </li>
+            <li class="text-center">
+                SERVICIO EXCLUSIVO ENTRE PARTICULARES
+            </li>
+            <li class="text-center">
+                ASESORAMIENTO INTEGRAL GRATUITO
+            </li>
+          </ul>
+          <div class="text-center">
+            <h2 class="text-gray-900 mt-2 text-xl">
+                SERVICIO EXCLUSIVO ENTRE PARTICULARES
+              </h2>
+              <img src="{% static 'imagenes/enlaces/5062832.png' %}" class="mb-2 w-full h-52 md:max-w-xl m-auto my-0 md:h-72 rounded-lg"  alt="que ofrecemos al vendedor viviendalibre.com"/>
+
+              <p class="text-gray-900">
+                Muchos potenciales compradores evitan cualquier contacto en el que pueda haber una agencia detrás, a fin de ahorrarse el pago de sus honorarios.
+                <br>
+                En los portales habituales de internet, cuya publicación es gratuita para el particular, se combinan los anuncios de estos con los de las agencias inmobiliarias.
+                <br>
+                Para el vendedor esto está bien, pero no es eficaz. Y no lo es porque al potencial comprador le echa para atrás encontrarse con tantas agencias y no puede realizar una búsqueda adecuada sin librarse de la odiosa comisión.
+                <br>
+                En definitiva, el usuario que no quiere encontrarse con agencias, deja de visitar éste tipo de portales.
+                
+                En ViviendaLibre.com esto no te ocurrirá, ya que nuestro principal valor añadido es que los clientes vendedores son siempre particulares, generando así fuertes expectativas de cara al potencial comprador y marcando la diferencia, rotundamente, frente al resto de portales.
+                
+              </p>
+          </div>
+          <div class="text-center">
+            <h2 class="text-gray-900 mt-2 mb-2 text-xl">
+                 ASESORAMIENTO INTEGRAL GRATUITO
+            </h2>
+
+              <p class="text-gray-900">
+
+                En ViviendaLibre.com podrás conocer, de manera totalmente gratuita, los trámites que tienes que seguir a la hora de vender o alquilar tu inmueble.
+          <br>
+                Además, podrás descargarte los documentos o contratos que necesites, para garantizar que tu operación sea segura.
+              </p>
+          </div>
+          
+        </br></br></br>
+    </div>
+    </br></br></br>
+</div>
+{% endblock content %}

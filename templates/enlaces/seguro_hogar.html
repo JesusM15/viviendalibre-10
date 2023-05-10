@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    - Seguro de hogar
+{% endblock title %}
+
+{% block content %}
+    <div class="flex flex-col px-6 mx-auto h-screen pt:mt-0 pt-20">
+       <h1 class="text-gray-900 text-center text-3xl mb-4">
+            Seguro de hogar
+       </h1>
+       <h3 class="text-gray-900 text-center text-xl">
+        A la hora de adquirir una vivienda, es cada vez más necesario contratar un seguro de hogar ya que, aproximadamente, el <b>40%</b> de los hogares sufre algún tipo de siniestralidad al año.
+        </h3>
+        <h4 class="text-gray-900 text-center text-xl mb-2">
+            Si contratas un seguro de hogar, verás cubiertos casi todos los riesgos a los que está expuesta tu vivienda (incendios, explosiones, robos, escapes de agua, daños por causas atmosféricas, etc.)
+        </h4>
+        <img src="{% static 'imagenes/enlaces/Seguro-del-hogar.jpg' %}" class="w-96 h-72 m-auto my-0"/>
+        <p class="text-gray-900 text-center text-lg">
+            Este tipo de seguros cubre el pago de una indemnización, el coste de la reparación o la reposición del bien de:
+            
+            Los daños que pueda sufrir la estructura de la vivienda (CONTINENTE)
+            Los daños que hay dentro de la vivienda (CONTENIDO)
+            Los daños que puedan sufrir terceras personas (Responsabilidad Civil)
+            
+            Ten en cuenta que la indemnización dependerá del tipo de seguro que hayas contratado y de los capitales que hayas asegurado para el continente y el contenido.
+            
+            En cualquier caso, si te decides a contratar un seguro, infórmate de las distintas opciones que tienes y asegúrate de conocer bien lo que cubre dicho seguro y sus exclusiones. Así no te llevarás ninguna sorpresa en caso de siniestro.
+        </p>
+        <br><br><br><br>
+    </div>
+{% endblock content %}

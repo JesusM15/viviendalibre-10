@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" href="{% static 'imagenes/logo.png' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViviendaLibre{% block title %}{% endblock title %}</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+    </script>
+    {% block css %}
+    {% endblock css %}
+</head>
+<body class="bg-gray-50">
+    <header>
+        {% include 'includes/navbar.html' %}
+    </header>
+
+    <main class="bg-gray-50">
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer class="fixed bottom-0 left-0 bg-gray-50 z-20 w-full px-4 text-center m-auto">
+      {% include 'includes/footer.html' %}
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    
+    {% block js %}
+    {% endblock js %}
+</body>
+</html>

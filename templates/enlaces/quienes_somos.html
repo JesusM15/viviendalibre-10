@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    - Quienes somos
+{% endblock title %}
+
+{% block content %}
+    <div class="flex flex-col px-6 mx-auto h-screen pt:mt-0 pt-20">
+        <h1 class="text-gray-900 text-center text-3xl font-semibold">
+            ¿Qui&eacute;nes somos?
+        </h1>
+        <img src="{% static 'imagenes/enlaces/quienes_somos.jpg' %}" class="md:h-80 md:w-2/4 md:max-w-2xl h-72 w-72 m-auto my-0" alt="quienes somos viviendalibre.com"/>
+        
+        <p class="text-gray-900 text-lg text-justify">
+            ViviendaLibre.com es una base de datos de inmuebles, pionera en Colombia, ya que no incorpora agencias inmobiliarias entre sus ofertantes, lo que la convierte en un servicio 100% entre particulares.
+
+            Por eso, ViviendaLibre.com nace con el objetivo de ofrecer un servicio a aquellos clientes que quieren alquilar o comprar su vivienda, local, bodega, etc. 
+            Sin tener que pagar por ello una comisión.
+
+            Habitualmente, cuando navegamos por la red, en busca de un inmueble, nos encontramos varios portales que nos ofrecen un servicio gratuito, con el que podemos mirar miles de ofertas.
+
+            En la mayoría de ocasiones, los ofertantes son agencias inmobiliarias y terminamos por desistir. Y en caso de que sigamos adelante, acarrearemos con el pago de una comisión que puede rondar varios millones de pesos. Como comprador, aparentemente no pagas tal comisión, pero solo en teoría, porque el precio de venta inevitablemente se encarece, para que el vendedor pueda pagar la comisión de la inmobiliaria, por lo que partes de un precio superior a la hora de negociar. 
+
+            En ViviendaLibre.com todas las ofertas que veas son de particulares. Contactarás directamente con ellos, con lo que no pagarás ninguna comisión.
+        </p>
+        </br></br></br></br>
+    </div>
+{% endblock content %}
