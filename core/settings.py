@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import environ
+import dj_database_url
 
 env = environ.Env()
 environ.Env.read_env()
@@ -207,6 +208,8 @@ if env('DEBUG'):
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
 else:    
+    DATABASES = {
+    }
     CSRF_TRUSTED_ORIGINS  = [
         'http://127.0.0.1:8000',
         'https://127.0.0.1:8000/',
