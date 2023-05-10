@@ -17,7 +17,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://viviendalibre.up.railway.app/', 'https://viviendalibre.up.railway.app/']
 
 SITE_ID = 1
 
@@ -207,14 +207,12 @@ if env('DEBUG'):
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
 else:    
-    DATABASES = {
-    }
     CSRF_TRUSTED_ORIGINS  = [
         'http://127.0.0.1:8000',
-        'https://127.0.0.1:8000/',
+        'https://viviendalibre.up.railway.app/',
         'http://127.0.0.1:443',
         'https://127.0.0.1:443/',
-        'https://d118-189-216-19-11.ngrok-free.app',
+        'https://viviendalibre.up.railway.app/',
     ]
     #configuracion smtp del servidor
     EMAIL_HOST = 'smtp.gmail.com'
