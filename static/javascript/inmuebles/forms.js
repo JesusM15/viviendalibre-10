@@ -6,7 +6,7 @@ var inmueble = document.getElementById('tipo');
 const csrftoken = Cookies.get('csrftoken'); 
 
 const form_submit = (e) =>{
-    const base_url = 'http://127.0.0.1:8000/';
+    const base_url = 'https://viviendalibre.up.railway.app/';
     var operacion = '', tipo = '', ordenar = '-precio', search_s = '';  
     for(let i=0; i< filter_form.elements.length; i++){
         if (filter_form.elements[i].checked == true){ 
