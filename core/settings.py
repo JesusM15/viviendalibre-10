@@ -214,16 +214,13 @@ if DEBUG:
     EMAIL_USE_TLS = True
 else:    
     CSRF_TRUSTED_ORIGINS  = [
-        'http://127.0.0.1:8000',
         'https://viviendalibre.up.railway.app/',
-        'http://127.0.0.1:443',
-        'https://127.0.0.1:443/',
-        'viviendalibre.up.railway.app',
-        'https://viviendalibre.up.railway.app/',
+        'https://viviendalibre.up.railway.app',
     ]
     CORS_ORIGIN_WHITELIST = {
         'viviendalibre.up.railway.app',
         'https://viviendalibre.up.railway.app/',
+        
     }
     #configuracion smtp del servidor
     EMAIL_HOST = 'smtp.gmail.com'
