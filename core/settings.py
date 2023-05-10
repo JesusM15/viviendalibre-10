@@ -114,11 +114,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        "NAME": 'inmuebles_db',
-        "HOST": "localhost",
-        "USER": "root",
-        "PASSWORD": "",
-        "PORT": 3306,
+        "NAME": env('DATABASE_NAME'),
+        "HOST": env('DATABASE_HOST'),
+        "USER": env('DATABASE_USER'),
+        "PASSWORD": env('DATABASE_PASSWORD'),
+        "PORT": env('DATABASE_PORT'),
         'OPTIONS': {
         'sql_mode': 'traditional',
         }
