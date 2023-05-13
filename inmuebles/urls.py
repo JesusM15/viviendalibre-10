@@ -4,6 +4,7 @@ from .views import *
 urlpatterns = [
     path('', HomePage, name='home'),
     path('aviso-maxima-cantidad-de-inmuebles/', max_post, name='max_post'),
+    path('completar-perfil/', completar_perfil, name='completar_perfil'),
     path('filtrado/', HomePageFilter, name='home_filter'),
     path('publicar-inmueble/', create_post, name='crear_publicacion'),
     path('detalles/<slug:inmueble_slug>/', inmueble_detail, name='detalles'),

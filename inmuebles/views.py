@@ -15,6 +15,9 @@ from django.core.mail import EmailMultiAlternatives
 
 def HomePage(request):
     
+    if request.user.is_active():
+        if request.user.telefono == '1' or  not request.user.telefono:return redirect(reverse('completar_perfil'))
+            
     inmuebles_1 = Inmueble.objects.filter(vendedor__suscripcion__status="ACTIVE")
     inmuebles_2 = Inmueble.objects.exclude(vendedor__suscripcion__status="ACTIVE")
     
@@ -88,6 +91,18 @@ def HomePageFilter(request, search='', operacion='', tipo='', ordenar='-precio')
     
     context = {'inmuebles': inmuebles,'texto':texto,}
     return render(request, 'inmuebles/home.html', context)
+
+@login_required
+def completar_perfil(request):
+    user = request.user
+    if request.method == 'POST':
+        form = UserCompleteForm(request.POST)
+        if form.is_valid():
+            user_new_info = form.save()
+            user_new_info.save()
+    else:
+        return render(request, 'accounts/edit_profile.html')
+    
 
 @login_required
 def max_post(request):

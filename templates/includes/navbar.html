@@ -31,6 +31,9 @@
             <li>
                 <a href="{% url 'mis_inmuebles' request.user.username request.user.email %}" class="block py-2 pl-3 pr-4 text-white  hover:bg-yellow-300 md:hover:bg-transparent md:p-0">Mis publicaciones</a>
             </li>
+            <li>
+                <a href="{% url 'completar_perfil' %}" class="block py-2 pl-3 pr-4 text-white  hover:bg-yellow-300 md:hover:bg-transparent md:p-0">Editar datos</a>
+            </li>
             {% endif %}
             <li>
                 <a href="{% url 'enlaces_de_interes' %}" class="block py-2 pl-3 pr-4 text-white   hover:bg-yellow-300 md:hover:bg-transparent md:p-0">Enlaces de interes</a>
