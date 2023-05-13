@@ -114,11 +114,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        "NAME": env('DATABASE_NAME'),
-        "HOST": env('DATABASE_HOST'),
-        "USER": env('DATABASE_USER'),
-        "PASSWORD": env('DATABASE_PASSWORD'),
-        "PORT": env('DATABASE_PORT'),
+        "NAME": 'inmuebles_db',
+        "HOST": 'localhost',
+        "USER": 'root',
+        "PASSWORD": '',
+        "PORT": 5432,
         'OPTIONS': {
         'sql_mode': 'traditional',
         }
@@ -207,12 +207,10 @@ if DEBUG:
         'http://127.0.0.1:443',
         'https://127.0.0.1:443/',
         'https://d118-189-216-19-11.ngrok-free.app',
-        'viviendalibre.up.railway.app',
         'https://viviendalibre.up.railway.app/'
     ]
     CORS_ORIGIN_WHITELIST = {
         'https://*.127.0.0.1',
-        'viviendalibre.up.railway.app',
         'https://viviendalibre.up.railway.app/',
     }
     EMAIL_HOST = 'smtp.gmail.com'

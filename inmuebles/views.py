@@ -13,7 +13,7 @@ import csv
 from django.http import HttpResponse
 from django.core.mail import EmailMultiAlternatives
 
-def HomePage(request):    
+def HomePage(request):
     
     inmuebles_1 = Inmueble.objects.filter(vendedor__suscripcion__status="ACTIVE")
     inmuebles_2 = Inmueble.objects.exclude(vendedor__suscripcion__status="ACTIVE")
@@ -90,7 +90,14 @@ def HomePageFilter(request, search='', operacion='', tipo='', ordenar='-precio')
     return render(request, 'inmuebles/home.html', context)
 
 @login_required
+def max_post(request):
+    return render(request, 'inmuebles/max_post.html')
+
+@login_required
 def create_post(request):
+    user = request.user
+    inmuebles = Inmueble.objects.filter(vendedor=user)
+    if inmuebles.count() > 0:return redirect(reverse('home'))
     key = settings.MAPS_API_KEY
 
     if request.method == 'POST':
