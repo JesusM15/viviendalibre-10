@@ -11,18 +11,11 @@
     <h1 class="text-gray-900 text-2xl font-semibold">{% trans "Sign Up" %}</h1>
 
     <p>{% blocktrans %}Ya tienes una cuenta? Entonces por favor <a href="{{ login_url }}" class="text-purple-500 hover:text-purple-900">inicia sesi&oacute;n</a>.{% endblocktrans %}</p>
-
+    {{ form.non_field_errors | safe }}
     <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
       {% csrf_token %}
-      {% for error in form.errors %}
-        {% if error %}
-        <span class="invalid-feedback d-block mb-3">
-          <strong>
-            {{error}}
-          </strong>
-        </span>
-        {% endif %}
-      {% endfor %}
+
+      {{form.email.errors | safe}}
       <label for="id_email" class="block mb-2 text-sm font-medium text-gray-900">Correo electrónico:</label>
       <input type="email" name="email" placeholder="Correo electrónico" autocomplete="email" required id="id_email"  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
       
@@ -34,13 +27,16 @@
       
       <label for="id_email" class="block mb-2 text-sm font-medium text-gray-900">Apellido(s):</label>
       <input type="text" name="apellidos" placeholder="Apellido(s)"  required  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-
+      
+      {{ form.username.errors | safe }}
       <label for="id_username" class="block mb-2 text-sm font-medium text-gray-900">Usuario:</label>
       <input type="text" name="username" placeholder="Usuario" autocomplete="username" minlength="1" maxlength="150" required id="id_username"  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
     
+      {{ form.password1.errors | safe }}
       <label for="id_password1" class="block mb-2 text-sm font-medium text-gray-900">Contraseña:</label>
       <input type="password" name="password1" placeholder="Contraseña" autocomplete="new-password" required id="id_password1"  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-
+      
+      {{ form.password2.errors | safe }}
       <label for="id_password2" class="block mb-2 text-sm font-medium text-gray-900">Contraseña (de nuevo):</label>
       <input type="password" name="password2" placeholder="Contraseña (de nuevo)" required id="id_password2"  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">    
 
