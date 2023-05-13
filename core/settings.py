@@ -17,7 +17,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://viviendalibre.up.railway.app/', 'viviendalibre.up.railway.app']
+ALLOWED_HOSTS = ['https://viviendalibre.up.railway.app/', 'viviendalibre.up.railway.app', 'https://*.127.0.0.1']
 
 SITE_ID = 1
 
@@ -211,6 +211,7 @@ if DEBUG:
         'https://viviendalibre.up.railway.app/'
     ]
     CORS_ORIGIN_WHITELIST = {
+        'https://*.127.0.0.1',
         'viviendalibre.up.railway.app',
         'https://viviendalibre.up.railway.app/',
     }
@@ -235,3 +236,17 @@ else:
     EMAIL_HOST_PASSWORD = env('password')
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
+    DATABASES = {
+    'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            "NAME": env('DATABASE_NAME'),
+            "HOST": env('DATABASE_HOST'),
+            "USER": env('DATABASE_USER'),
+            "PASSWORD": env('DATABASE_PASSWORD'),
+            "PORT": env('DATABASE_PORT'),
+            'OPTIONS': {
+            'sql_mode': 'traditional',
+            }
+        }
+    }
+    DATABASES['default']['ATOMIC_REQUESTS'] = True

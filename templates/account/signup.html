@@ -14,7 +14,7 @@
 
     <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
       {% csrf_token %}
-      {% for error in form %}
+      {% for error in form.error %}
         {% if error %}
         <span class="invalid-feedback d-block mb-3">
           <strong>
