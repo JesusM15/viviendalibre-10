@@ -100,6 +100,8 @@ def completar_perfil(request):
         if form.is_valid():
             user_new_info = form.save()
             user_new_info.save()
+            return redirect(reverse('home'))
+        return render(request, 'accounts/edit_profile.html')
     else:
         return render(request, 'accounts/edit_profile.html')
     
