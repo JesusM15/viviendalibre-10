@@ -15,7 +15,7 @@ from django.core.mail import EmailMultiAlternatives
 
 def HomePage(request):
     
-    if request.user.is_active():
+    if request.user:
         if request.user.telefono == '1' or  not request.user.telefono:return redirect(reverse('completar_perfil'))
             
     inmuebles_1 = Inmueble.objects.filter(vendedor__suscripcion__status="ACTIVE")
