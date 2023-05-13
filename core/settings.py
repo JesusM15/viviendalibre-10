@@ -40,7 +40,8 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'django_extensions',
-
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 OWN_APPS = [
@@ -167,7 +168,13 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static',]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-MEDIA_URL = 'media/'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'djfpepiez',
+    'API_KEY': env('cloud_api_key'),
+    'API_SECRET': env('cloud_secret'),
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
+MEDIA_URL = 'viviendalibre/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGOUT_URL = 'account_logout'
