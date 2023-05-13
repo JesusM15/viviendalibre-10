@@ -14,7 +14,7 @@
 
     <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
       {% csrf_token %}
-      {% for error in form.error %}
+      {% for error in form.errors %}
         {% if error %}
         <span class="invalid-feedback d-block mb-3">
           <strong>
@@ -35,7 +35,7 @@
       <label for="id_password2" class="block mb-2 text-sm font-medium text-gray-900">Contraseña (de nuevo):</label>
       <input type="password" name="password2" placeholder="Contraseña (de nuevo)" required id="id_password2"  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">    
       {% if redirect_field_value %}
-      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
       <button class="p-4 bg-yellow-300 hover:bg-yellow-400 mt-2 rounded-lg text-white" type="submit">{% trans "Sign Up" %} &raquo;</button>
     </form>
