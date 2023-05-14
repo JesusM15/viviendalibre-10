@@ -96,14 +96,15 @@ def HomePageFilter(request, search='', operacion='', tipo='', ordenar='-precio')
 def completar_perfil(request):
     user = request.user
     if request.method == 'POST':
-        form = UserCompleteForm(request.POST)
+        form = UserCompleteForm(request.POST, instance=user)
         if form.is_valid():
             user_new_info = form.save()
             user_new_info.save()
             return redirect(reverse('home'))
         return render(request, 'accounts/edit_profile.html')
     else:
-        return render(request, 'accounts/edit_profile.html')
+        form = UserCompleteForm(instance=user)
+        return render(request, 'accounts/edit_profile.html', {'form':form,})
     
 
 @login_required
