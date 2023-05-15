@@ -14,12 +14,12 @@
       {% csrf_token %}
 
         <label  class="block mb-2 text-sm font-medium text-gray-900">Telefono:</label>
-        <input type="text" name="telefono" placeholder="ej: 6764212345" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+        <input type="text" {% if request.user.telefono == '1' %}  {% else %}value="{{request.user.telefono}}" {% endif %} name="telefono" placeholder="ej: 6764212345" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
         <label class="block mb-2 text-sm font-medium text-gray-900">Nombre(s):</label>
-        <input type="text" name="nombres" placeholder="Nombre(s)" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+        <input type="text" name="nombres"{% if request.user.nombres == '1' %}  {% else %}value="{{request.user.nombres}}" {% endif %} placeholder="Nombre(s)" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
         <label class="block mb-2 text-sm font-medium text-gray-900">Apellido(s):</label>
-        <input type="text" name="apellidos" placeholder="Apellido(s)" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+        <input type="text" name="apellidos" {% if request.user.apellidos == '1' %}  {% else %}value="{{request.user.apellidos}}" {% endif %}placeholder="Apellido(s)" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
         <br>
       <button class="primaryAction" type="submit">Finalizado</button>
