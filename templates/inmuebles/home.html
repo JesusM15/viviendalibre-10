@@ -260,7 +260,7 @@
             var place = search.getPlace();
 
             var address = "";
-            if (place.formatted_address != ''){
+            if (place.formatted_address != undefined){
                 autocomplete.value = place.formatted_address;
             }
         });
