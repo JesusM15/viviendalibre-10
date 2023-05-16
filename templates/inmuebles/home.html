@@ -250,11 +250,25 @@
 {% endblock content %}
 
 {% block js %}
+<script src="https://maps.googleapis.com/maps/api/js?key={{key}}&libraries=places"></script>
+<script>
+    google.maps.event.addDomListener(window, "load", function(){
+        var autocomplete = document.getElementById('default-search');
+
+        const search = new google.maps.places.Autocomplete(autocomplete);
+        search.addListener("place_changed", function(e){
+            var place = search.getPlace();
+
+            var address = "";
+
+            autocomplete.value = place.formatted_address;
+        });
+    });
+</script>
     <script src="{% static 'javascript/menu_filters.js' %}">
 
     </script>
     <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
-   
     <script src="{% static 'javascript/inmuebles/forms.js' %}"></script>
     
 {% endblock js %}

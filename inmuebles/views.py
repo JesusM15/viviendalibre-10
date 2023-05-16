@@ -17,6 +17,8 @@ def HomePage(request):
     
     if request.user:
         if request.user.telefono == '1' or  not request.user.telefono:return redirect(reverse('completar_perfil'))
+        
+    key = settings.MAPS_API_KEY
             
     inmuebles_1 = Inmueble.objects.filter(vendedor__suscripcion__status="ACTIVE")
     inmuebles_2 = Inmueble.objects.exclude(vendedor__suscripcion__status="ACTIVE")
@@ -33,7 +35,7 @@ def HomePage(request):
     except EmptyPage:
         inmuebles = paginator.page(paginator.num_pages)
    
-    context = {'inmuebles': inmuebles,}
+    context = {'inmuebles': inmuebles, 'key': key,}
     return render(request, 'inmuebles/home.html', context)
 
 @login_required
@@ -52,6 +54,7 @@ def sent_email_to_seller(request, inmueble_id):
     return redirect(reverse('detalles', args=[inmueble.slug]))
 
 def HomePageFilter(request, search='', operacion='', tipo='', ordenar='-precio'):
+    key = settings.MAPS_API_KEY
     search = request.GET.get('search', '')
     operacion = request.GET.get('operacion', '')
     tipo = request.GET.get('tipo', '')
@@ -89,7 +92,7 @@ def HomePageFilter(request, search='', operacion='', tipo='', ordenar='-precio')
         inmuebles = paginator.page(paginator.num_pages)
 
     
-    context = {'inmuebles': inmuebles,'texto':texto,}
+    context = {'inmuebles': inmuebles,'texto':texto, 'key': key,}
     return render(request, 'inmuebles/home.html', context)
 
 @login_required
