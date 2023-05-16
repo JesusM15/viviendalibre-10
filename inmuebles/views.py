@@ -53,11 +53,13 @@ def sent_email_to_seller(request, inmueble_id):
     
     return redirect(reverse('detalles', args=[inmueble.slug]))
 
-def HomePageFilter(request, search='', operacion='', tipo='', ordenar='-precio'):
+def HomePageFilter(request, search='', operacion='', tipo='', ordenar='-precio', max_range='', min_range=''):
     key = settings.MAPS_API_KEY
     search = request.GET.get('search', '')
     operacion = request.GET.get('operacion', '')
     tipo = request.GET.get('tipo', '')
+    min_range = request.GET.get('min_range', '')
+    max_range = request.GET.get('max_range', '')
     
     texto = ''
     texto_ubi = ''
@@ -79,6 +81,13 @@ def HomePageFilter(request, search='', operacion='', tipo='', ordenar='-precio')
         inmuebles_2 = inmuebles.exclude(vendedor__suscripcion__status="ACTIVE")
         inmuebles = list(chain(inmuebles_1, inmuebles_2))
         texto = f'Busqueda {search}'
+        
+    if min_range != '' and max_range == '':
+        inmuebles = inmuebles.filter(precio__range=[int(min_range), 9223372036854775806])
+    elif min_range == '' and max_range != '':
+        inmuebles = inmuebles.filter(precio__range=[0, int(max_range)])
+    elif min_range !='' and max_range != '':
+        inmuebles = inmuebles.filter(precio__range=[int(min_range), int(max_range)])
         
     inmuebles_list = inmuebles
     paginator = Paginator(inmuebles_list, 5)

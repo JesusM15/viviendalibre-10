@@ -126,6 +126,20 @@
                                 </div>
                             </li>
                         </ul>
+                        <div>
+                            <ul class="w-48 text-sm font-medium text-gray-900">
+                                <li class="w-full">
+                                    <div class="flex items-center pl-3">
+                                        <input type="number" value="" id="min_range" name="min_range" class="w-4 h-4  focus:ring-transparent focus:ring-2" placeholder="Minimo" />
+                                    </div>
+                                </li>
+                                <li class="w-full">
+                                    <div class="flex items-center pl-3">
+                                        <input type="number" value="" id="max_range" name="max_range" class="w-4 h-4  focus:ring-transparent focus:ring-2" placeholder="M&aacute;ximo" />
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <br>
                     <button type="submit" id="btn-filtrar" value="Filtrar" class="h-12 w-full bg-yellow-300 hover:bg-yellow-400 hover:text-white cursor-pointer mr-4 text-gray-600 text-lg rounded-md  ">
@@ -262,8 +276,9 @@
             var address = "";
             if (place.formatted_address != undefined){
                 autocomplete.value = place.formatted_address;
-            }
+            };
         });
+
     });
 </script>
     <script src="{% static 'javascript/menu_filters.js' %}">
