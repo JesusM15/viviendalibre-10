@@ -237,13 +237,11 @@
                                         </li>
                                     </ul>
                                     {% if inmueble.vendedor.suscripcion.status == 'ACTIVE' %}
-                                        {% if inmueble.vendedor.suscripcion.name == 'PREMIUM' %}
                                         <div class="justify-end flex">
                                             <span class="material-icons text-yellow-300 cursor-pointer text-3xl">
                                                 star
                                             </span>
                                         </div>
-                                        {% endif %}
                                     {% endif %}
                                 </div>
                             </div>
