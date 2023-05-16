@@ -260,8 +260,9 @@
             var place = search.getPlace();
 
             var address = "";
-
-            autocomplete.value = place.formatted_address;
+            if (place.formatted_address != ''){
+                autocomplete.value = place.formatted_address;
+            }
         });
     });
 </script>
