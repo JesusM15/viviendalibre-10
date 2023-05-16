@@ -105,15 +105,15 @@ def pago_premium_crear_producto(request):
     }
     
     data_2 = {
-                "name": "Plan-premium",
-                "description": "Subscripcion a premium mensual",
+                "name": "Plan-basico",
+                "description": "Subscripcion basica mensual",
                 "type": "SERVICE",
                 "category":  "SOFTWARE",
             }
         
     response = requests.post(f'{settings.PAYPAL_API}/v1/catalogs/products', json = data_2, headers=headers_2, timeout=60)
     if response:
-        plan = Plan.objects.get(name="Plan premium")
+        plan = Plan.objects.get(name="Plan basico")
         paypal_id = "".join(response.json()['id'])
         plan.paypal_id = paypal_id
         plan.save()
@@ -139,7 +139,7 @@ def pago_premium_plan(request, id_product):
     token = token.json()['access_token']
     
     plan = {
-        'name': 'Plan 6 meses', 
+        'name': 'Plan 2 meses', 
         'product_id': body.paypal_id,
         "status": "ACTIVE",
         "description": body.description,
@@ -147,13 +147,22 @@ def pago_premium_plan(request, id_product):
             {
                 "frequency": {
                     "interval_unit": "MONTH",
-                    "interval_count": 6
+                    "interval_count": 2
+                },
+                "tenure_type": "TRIAL",
+                "sequence": 1,
+                "total_cycles": 1
+            },
+            {
+                "frequency": {
+                    "interval_unit": "MONTH",
+                    "interval_count": 2
                 },
                 "tenure_type": "REGULAR",
                 "sequence": 1,
                 "pricing_scheme": {
                     "fixed_price": {
-                        "value": 10,
+                        "value": 8,
                         "currency_code": "USD",
                     },
                 }
@@ -167,7 +176,7 @@ def pago_premium_plan(request, id_product):
             }
         },
         "taxes": {
-            "percentage": "10",
+            "percentage": "0",
             "inclusive": False,
         }
     }
@@ -221,8 +230,8 @@ def generar_subscripcion(request, plan_id):
         }, 
         #paginas donde vamos a redireccionar al cliente si el pago es exitoso o fallido
         "application_context": {
-            "return_url": settings.BASE_HOST + 'pago/subscripcion-premium/exitosa/',
-            "cancel_url": settings.BASE_HOST + 'pago/subscripcion-premium/fallida/'       
+            "return_url": settings.BASE_HOST + 'pago/subscripcion/exitosa/',
+            "cancel_url": settings.BASE_HOST + 'pago/subscripcion/fallida/'       
         }   
     }
     

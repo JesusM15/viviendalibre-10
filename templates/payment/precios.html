@@ -19,12 +19,27 @@
                 <p class="mb-3 font-normal text-gray-500 ">- Destacar sobre las demas publicaciones</p>
                 <p class="mb-3 font-normal text-gray-500 ">- Publicaci&oacute;n hasta la venta</p>
                 <h6 class="mb-3 font-normal text-lg text-gray-500 ">Duraci&oacute;n: 6 meses</h6>
-                <h6 class="mb-3 font-normal text-lg text-gray-500 ">Precio: 49900</h6>
+                <h6 class="mb-3 font-normal text-lg text-gray-500 ">Precio: 11 USD</h6>
                 <a href="{% url 'generar_subscripcion' premium.paypal_plan_id %}" class="inline-flex items-center text-blue-600 hover:underline">
                     Comprar
                 </a>
             </div>
-            
+
+            <div class="max-w-sm p-6 mt-5 bg-white border border-gray-200 rounded-lg shadow">
+                <div class="w-64 h-64 m-auto mt-2">
+                    <img src="{% static 'imagenes/payment/starbasica.png' %}" alt="plan basico" >
+                </div>
+                <a href="#">
+                    <h5 class="mb-2 text-3xl font-semibold tracking-tight text-gray-900 ">Plan b&aacute;sico</h5>
+                </a>
+                <h6 class="mb-3 font-normal text-lg text-gray-500 ">Beneficios:</h6>
+                <p class="mb-3 font-normal text-gray-500 ">- Publicaci&oacute;n</p>
+                <h6 class="mb-3 font-normal text-lg text-gray-500 ">Duraci&oacute;n: 2 meses</h6>
+                <h6 class="mb-3 font-normal text-lg text-gray-500 ">Precio: 8 USD (prueba gratis durante 2 meses)</h6>
+                <a href="{% url 'generar_subscripcion' premium.paypal_plan_id %}" class="inline-flex items-center text-blue-600 hover:underline">
+                    Comprar
+                </a>
+            </div>
         </div>
 
     </div>
