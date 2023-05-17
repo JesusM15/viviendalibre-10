@@ -199,7 +199,7 @@ WEBHOOK_ID = env('WEBHOOK_ID')
 
 MAPS_API_KEY = env('MAPS_API_KEY')
 
-if DEBUG:
+if not DEBUG:
     # EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
     CSRF_TRUSTED_ORIGINS  = [
         'http://127.0.0.1:8000',
