@@ -20,8 +20,8 @@ def HomePage(request):
         
     key = settings.MAPS_API_KEY
             
-    inmuebles_1 = Inmueble.objects.filter(vendedor__suscripcion__status="ACTIVE", vendedor__suscripcion__name="Plan premium")
-    inmuebles_2 = Inmueble.objects.exclude(vendedor__suscripcion__status="ACTIVE", vendedor__suscripcion__name="Plan premium")
+    inmuebles_1 = Inmueble.objects.filter(vendedor__suscripcion__status="ACTIVE", vendedor__suscripcion__plan__name="Plan premium")
+    inmuebles_2 = Inmueble.objects.exclude(vendedor__suscripcion__status="ACTIVE", vendedor__suscripcion__plan__name="Plan premium")
     
     inmuebles_list = list(chain(inmuebles_1, inmuebles_2))
     
@@ -77,8 +77,8 @@ def HomePageFilter(request, search='', operacion='', tipo='', ordenar='-precio',
         texto = f'Mostrando solo: {tipo}' + texto_ubi
     elif tipo == '' and operacion == '':
         inmuebles = Inmueble.objects.filter(ubicacion__icontains=search, precio__range=[int(min_range), int(max_range)]).order_by(ordenar, '-published')
-        inmuebles_1 = inmuebles.filter(vendedor__suscripcion__status="ACTIVE", vendedor__suscripcion__name='Plan premium')
-        inmuebles_2 = inmuebles.exclude(vendedor__suscripcion__status="ACTIVE", vendedor__suscripcion__name='Plan premium')
+        inmuebles_1 = inmuebles.filter(vendedor__suscripcion__status="ACTIVE", vendedor__suscripcion__plan__name='Plan premium')
+        inmuebles_2 = inmuebles.exclude(vendedor__suscripcion__status="ACTIVE", vendedor__suscripcion__plan__name='Plan premium')
         inmuebles = list(chain(inmuebles_1, inmuebles_2))
         texto = f'Busqueda {search}'
         
