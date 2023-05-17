@@ -161,6 +161,27 @@
 
     <br><br>
     
+    {% if inmueble.video.url %}
+    <section>
+        <h2 class="text-gray-900 text-xl font-bold mt-4">
+            Video:
+        </h2>
+        <br>
+        <style>
+            .video-container{
+                width: auto;
+                height: 400px;
+            }
+
+        </style>
+        <video src="{{inmueble.video.url}}" controls class="video-container">
+            Tu navegador no admite el elemento <code>video</code>.
+        </video>
+    </section>
+    {% endif %}
+
+    <br><br>
+    
     <section>
         <h2 class="text-gray-900 text-xl font-bold mt-4">
             Ubicaci&oacute;n del inmueble:
