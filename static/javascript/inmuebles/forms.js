@@ -9,7 +9,7 @@ const csrftoken = Cookies.get('csrftoken');
 
 const form_submit = (e) =>{
     const base_url = 'https://viviendalibre.up.railway.app/';
-    var operacion = '', tipo = '', ordenar = '-precio', search_s = '', min_range = '', max_range=''; 
+    var operacion = '', tipo = '', ordenar = '-precio', search_s = '', min_range = '0', max_range='9223372036854775806'; 
      
     for(let i=0; i< filter_form.elements.length; i++){
         if (filter_form.elements[i].checked == true){ 
@@ -24,10 +24,14 @@ const form_submit = (e) =>{
                     ordenar = filter_form.elements[i].value;
                 break;
                 case "min_range":
-                    min_range = filter_form.elements[i].value;
+                    if (filter_form.elements[i].value != ''){
+                        min_range = filter_form.elements[i].value;
+                    }
                 break;
                 case "max_range":
-                    max_range = filter_form.elements[i].value;
+                    if (filter_form.elements[i].value != ''){
+                        max_range = filter_form.elements[i].value;
+                    }
                 break;
             default:
                 break;

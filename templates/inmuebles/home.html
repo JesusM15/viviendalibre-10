@@ -237,11 +237,13 @@
                                         </li>
                                     </ul>
                                     {% if inmueble.vendedor.suscripcion.status == 'ACTIVE' %}
-                                        <div class="justify-end flex">
-                                            <span class="material-icons text-yellow-300 cursor-pointer text-3xl">
-                                                star
-                                            </span>
-                                        </div>
+                                        {% if inmueble.vendedor.suscripcion.name == 'Plan premium' %}
+                                            <div class="justify-end flex">
+                                                <span class="material-icons text-yellow-300 cursor-pointer text-3xl">
+                                                    star
+                                                </span>
+                                            </div>
+                                        {% endif %}
                                     {% endif %}
                                 </div>
                             </div>
@@ -264,23 +266,23 @@
 {% endblock content %}
 
 {% block js %}
-<script src="https://maps.googleapis.com/maps/api/js?key={{key}}&libraries=places"></script>
-<script>
-    google.maps.event.addDomListener(window, "load", function(){
-        var autocomplete = document.getElementById('default-search');
+    <script src="https://maps.googleapis.com/maps/api/js?key={{key}}&libraries=places"></script>
+    <script>
+        google.maps.event.addDomListener(window, "load", function(){
+            var autocomplete = document.getElementById('default-search');
 
-        const search = new google.maps.places.Autocomplete(autocomplete);
-        search.addListener("place_changed", function(e){
-            var place = search.getPlace();
+            const search = new google.maps.places.Autocomplete(autocomplete);
+            search.addListener("place_changed", function(e){
+                var place = search.getPlace();
 
-            var address = "";
-            if (place.formatted_address != undefined){
-                autocomplete.value = place.formatted_address;
-            };
+                var address = "";
+                if (place.formatted_address != undefined){
+                    autocomplete.value = place.formatted_address;
+                };
+            });
+
         });
-
-    });
-</script>
+    </script>
     <script src="{% static 'javascript/menu_filters.js' %}">
 
     </script>

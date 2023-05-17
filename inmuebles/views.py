@@ -20,8 +20,8 @@ def HomePage(request):
         
     key = settings.MAPS_API_KEY
             
-    inmuebles_1 = Inmueble.objects.filter(vendedor__suscripcion__status="ACTIVE")
-    inmuebles_2 = Inmueble.objects.exclude(vendedor__suscripcion__status="ACTIVE")
+    inmuebles_1 = Inmueble.objects.filter(vendedor__suscripcion__status="ACTIVE", vendedor__suscripcion__name="Plan premium")
+    inmuebles_2 = Inmueble.objects.exclude(vendedor__suscripcion__status="ACTIVE", vendedor__suscripcion__name="Plan premium")
     
     inmuebles_list = list(chain(inmuebles_1, inmuebles_2))
     
@@ -53,13 +53,13 @@ def sent_email_to_seller(request, inmueble_id):
     
     return redirect(reverse('detalles', args=[inmueble.slug]))
 
-def HomePageFilter(request, search='', operacion='', tipo='', ordenar='-precio', max_range='', min_range=''):
+def HomePageFilter(request, search='', operacion='', tipo='', ordenar='-precio', max_range='0', min_range='9223372036854775806'):
     key = settings.MAPS_API_KEY
     search = request.GET.get('search', '')
     operacion = request.GET.get('operacion', '')
     tipo = request.GET.get('tipo', '')
-    min_range = request.GET.get('min_range', '')
-    max_range = request.GET.get('max_range', '')
+    min_range = request.GET.get('min_range', '0')
+    max_range = request.GET.get('max_range', '9223372036854775806')
     
     texto = ''
     texto_ubi = ''
@@ -67,27 +67,20 @@ def HomePageFilter(request, search='', operacion='', tipo='', ordenar='-precio',
     if search != '':
         texto_ubi = f'\nbusqueda: {search}'
     if operacion != '' and tipo != '':
-        inmuebles = Inmueble.objects.filter(operacion=operacion, Tipo_de_inmueble=tipo).filter(ubicacion__icontains=search).order_by(ordenar, '-published')
+        inmuebles = Inmueble.objects.filter(operacion=operacion, Tipo_de_inmueble=tipo, precio__range=[int(min_range), int(max_range)]).filter(ubicacion__icontains=search).order_by(ordenar, '-published')
         texto = f'Mostrando solo: {tipo} y en {operacion}' + texto_ubi
     elif operacion != '' and tipo == '':
-        inmuebles = Inmueble.objects.filter(operacion=operacion).filter(ubicacion__icontains=search).order_by(ordenar, '-published')
+        inmuebles = Inmueble.objects.filter(operacion=operacion, precio__range=[int(min_range), int(max_range)]).filter(ubicacion__icontains=search).order_by(ordenar, '-published')
         texto = f'Mostrando solo: {operacion}s' + texto_ubi
     elif tipo != '' and operacion == '':
-        inmuebles = Inmueble.objects.filter(Tipo_de_inmueble=tipo).filter(ubicacion__icontains=search).order_by(ordenar, '-published')
+        inmuebles = Inmueble.objects.filter(Tipo_de_inmueble=tipo, precio__range=[int(min_range), int(max_range)]).filter(ubicacion__icontains=search).order_by(ordenar, '-published')
         texto = f'Mostrando solo: {tipo}' + texto_ubi
     elif tipo == '' and operacion == '':
-        inmuebles = Inmueble.objects.filter(ubicacion__icontains=search).order_by(ordenar, '-published')
-        inmuebles_1 = inmuebles.filter(vendedor__suscripcion__status="ACTIVE")
-        inmuebles_2 = inmuebles.exclude(vendedor__suscripcion__status="ACTIVE")
+        inmuebles = Inmueble.objects.filter(ubicacion__icontains=search, precio__range=[int(min_range), int(max_range)]).order_by(ordenar, '-published')
+        inmuebles_1 = inmuebles.filter(vendedor__suscripcion__status="ACTIVE", vendedor__suscripcion__name='Plan premium')
+        inmuebles_2 = inmuebles.exclude(vendedor__suscripcion__status="ACTIVE", vendedor__suscripcion__name='Plan premium')
         inmuebles = list(chain(inmuebles_1, inmuebles_2))
         texto = f'Busqueda {search}'
-        
-    if min_range != '' and max_range == '':
-        inmuebles = inmuebles.filter(precio__range=[int(min_range), 9223372036854775806])
-    elif min_range == '' and max_range != '':
-        inmuebles = inmuebles.filter(precio__range=[0, int(max_range)])
-    elif min_range !='' and max_range != '':
-        inmuebles = inmuebles.filter(precio__range=[int(min_range), int(max_range)])
         
     inmuebles_list = inmuebles
     paginator = Paginator(inmuebles_list, 5)
