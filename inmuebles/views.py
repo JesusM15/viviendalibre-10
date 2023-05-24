@@ -13,12 +13,10 @@ import csv
 from django.http import HttpResponse
 from django.core.mail import EmailMultiAlternatives
 
+@login_required
 def HomePage(request):
     
-    try:
-    if request.user.is_active():
-        if request.user.telefono == '1' or  not request.user.telefono:return redirect(reverse('completar_perfil'))
-    except: pass
+    if request.user.telefono == '1' or  not request.user.telefono:return redirect(reverse('completar_perfil'))
         
     key = settings.MAPS_API_KEY
             
